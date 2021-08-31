@@ -14,18 +14,19 @@ public class OffreResource {
 
     private final OffreService offreService;
 
+
     public OffreResource(OffreService offreService) {
         this.offreService = offreService;
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Offre>> getAllOffres () {
+    public ResponseEntity<List<Offre>> getAllOffres() {
         List<Offre> employees = offreService.findAllOffres();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Offre> getOffreById (@PathVariable("id") Long id) {
+    public ResponseEntity<Offre> getOffreById(@PathVariable("id") Long id) {
         Offre offre = offreService.findOffreById(id);
         return new ResponseEntity<>(offre, HttpStatus.OK);
     }
@@ -47,4 +48,6 @@ public class OffreResource {
         offreService.deleteOffre(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 }

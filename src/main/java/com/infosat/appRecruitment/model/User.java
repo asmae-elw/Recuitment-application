@@ -1,20 +1,20 @@
 package com.infosat.appRecruitment.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(	name = "users",
+@Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
@@ -38,24 +38,31 @@ public class User {
     @Size(max = 120)
     private String password;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "user_roles",
+    @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "offresPostulées",
-            joinColumns = { @JoinColumn(name = "user_id")},
-            inverseJoinColumns = { @JoinColumn (name = "offre_id")})
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "offre_id")})
     private Set<Offre> offres = new HashSet<>();
 
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL ,mappedBy = "condidatPostule")
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<Offre> offresPostulees;
+
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "condidatPostule")
     private List<PostuleInfos> postuleInfos;
 
-    public List<PostuleInfos> getPostuleInfos() {
-        return postuleInfos;
+    public User() {
     }
 
 
@@ -68,6 +75,16 @@ public class User {
         this.postuleInfos = postuleInfos;
     }*/
 
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public List<PostuleInfos> getPostuleInfos() {
+        return postuleInfos;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -79,15 +96,6 @@ public class User {
                 ", offres=" + offres +
                 ", postuleInfos=" + postuleInfos +
                 '}';
-    }
-
-    public User() {
-    }
-
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
     }
 
 

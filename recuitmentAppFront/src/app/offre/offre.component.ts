@@ -1,8 +1,8 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { OffreService } from '../_services/offre.service';
-import { Offre } from './offre';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {OffreService} from '../_services/offre.service';
+import {Offre} from './offre';
 
 @Component({
   selector: 'app-offre',
@@ -14,15 +14,15 @@ export class OffreComponent implements OnInit {
   public offres: Offre[];
   public editOffre: Offre;
   public deleteOffre: Offre;
-
-  private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
   tokenStorageService: any;
+  private roles: string[];
 
-   constructor(private offreService: OffreService){}
+  constructor(private offreService: OffreService) {
+  }
 
   ngOnInit() {
     this.getOffres();
@@ -84,10 +84,10 @@ export class OffreComponent implements OnInit {
     const results: Offre[] = [];
     for (const offre of this.offres) {
       if (offre.title.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || offre.contract.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || offre.salary.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || offre.experience.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || offre.prerequisites.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+        || offre.contract.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || offre.salary.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || offre.experience.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || offre.prerequisites.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
         results.push(offre);
       }
     }

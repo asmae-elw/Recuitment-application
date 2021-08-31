@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Offre } from '../offre/offre';
-import { environment } from 'src/environments/environment';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Offre} from '../offre/offre';
+import {environment} from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class OffreService {
   private apiServerUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {
+  }
 
   public getOffres(): Observable<Offre[]> {
     return this.http.get<Offre[]>(`${this.apiServerUrl}/offre/all`);

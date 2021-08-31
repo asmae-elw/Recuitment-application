@@ -1,80 +1,86 @@
-
 <h1>Liste des offres d'emploi !</h1>
 
 
 <div class="row">
-    <div *ngFor="let offre of offres" class="col-md-6 col-xl-12">
-       <div class="card m-b-30">
-          <div class="card-body row">
-             <div class="col-6">
-               <!-- <a href=""><img src="{{employee?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>-->
-             </div>
-             
-          </div>
-          <ul class="list-group list-group-flush">
-            
-            <li class="list-group-item"><i class="fa fa-phone float-right"></i><h2>{{offre?.title}}</h2></li>
-            <li class="list-group-item"><i class="fa fa-phone float-right"></i><b>Type de contrat :</b>  {{offre?.contract}}</li>
-             <li class="list-group-item"><i class="fa fa-envelope float-right"></i><b>Prérequis : </b>{{offre?.prerequisites}}</li>
-             <li class="list-group-item"><i class="fa fa-phone float-right"></i><b>Salaire : </b>{{offre?.salary}} dh</li>
-          </ul>
-         
+  <div *ngFor="let offre of offres" class="col-md-6 col-xl-12">
+    <div class="card m-b-30">
+      <div class="card-body row">
+        <div class="col-6">
+          <!-- <a href=""><img src="{{employee?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>-->
+        </div>
 
-          <div class="container" id="main-container">
-            
-             <a class="btn btn-primary" (click)="onOpenModal(null, 'addPostuleInfos')"> postuler </a>
-             <!--<a routerLink="/postuler/addPostuleInfos"><button class="btn btn-success pull-right" > Add Customer</button></a>-->
-          
+      </div>
+      <ul class="list-group list-group-flush">
+
+        <li class="list-group-item"><i class="fa fa-phone float-right"></i>
+          <h2>{{offre?.title}}</h2></li>
+        <li class="list-group-item"><i class="fa fa-phone float-right"></i><b>Type de contrat :</b>  {{offre?.contract}}
+        </li>
+        <li class="list-group-item"><i class="fa fa-envelope float-right"></i><b>Prérequis
+          : </b>{{offre?.prerequisites}}</li>
+        <li class="list-group-item"><i class="fa fa-phone float-right"></i><b>Salaire : </b>{{offre?.salary}} dh</li>
+      </ul>
 
 
-       </div>
+      <div class="container" id="main-container">
+
+        <a (click)="onOpenModal(null, 'addPostuleInfos')" class="btn btn-primary"> postuler </a>
+        <!--<a routerLink="/postuler/addPostuleInfos"><button class="btn btn-success pull-right" > Add Customer</button></a>-->
+
+
+      </div>
     </div>
   </div>
-  
+
 </div>
 
-  <!-- Add postule -->
-<div class="modal fade" id="addPostuleInfosModal" tabindex="-1" role="dialog" aria-labelledby="addPostuleInfosModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-        <div class="modal-header">
-           <h5 class="modal-title" id="addPostuleInfosModalLabel">Add Employee</h5>
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-           </button>
-        </div>
-        <div class="modal-body">
-           <form #addForm="ngForm" (ngSubmit)="onAddPostuleInfos(addForm)">
-           <div class="form-group">
-              <label for="cv">Name</label>
-              <input type="text" ngModel name="cv" class="form-control" id="cv" placeholder="cv" required>
-           </div>
-           <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
-           </div>
-           <div class="form-group">
-              <label for="linkenUrl">Linkdin URL</label>
-              <input type="text" ngModel name="linkdenUrl" class="form-control" id="linkenUrl" placeholder="linkenUrl" required>
-           </div>
-           <div class="form-group">
-              <label for="githubUrl">Phone</label>
-              <input type="text" ngModel name="githubUrl" class="form-control" id="githubUrl" placeholder="githubUrl" required>
-           </div>
-           <div class="form-group">
-              <label for="societe">Image URL</label>
-              <input type="text" ngModel name="societe" class="form-control" id="societe" placeholder="societe" required>
-           </div>
-           <div class="form-group">
-               <label for="domainedetude">Image URL</label>
-               <input type="text" ngModel name="domaineDetude" class="form-control" id="domainedetude" placeholder="domainedetude" required>
-            </div>
-           <div class="modal-footer">
-              <button type="button" id="add-postuleInfos-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
-           </div>
-           </form>
-        </div>
-     </div>
-   </div>
-   </div>
+<!-- Add postule -->
+<div aria-hidden="true" aria-labelledby="addPostuleInfosModalLabel" class="modal fade" id="addPostuleInfosModal"
+     role="dialog" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addPostuleInfosModalLabel">Add Employee</h5>
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddPostuleInfos(addForm)">
+          <div class="form-group">
+            <label for="cv">Name</label>
+            <input class="form-control" id="cv" name="cv" ngModel placeholder="cv" required type="text">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input class="form-control" id="email" name="email" ngModel placeholder="Email" required type="email">
+          </div>
+          <div class="form-group">
+            <label for="linkenUrl">Linkdin URL</label>
+            <input class="form-control" id="linkenUrl" name="linkdenUrl" ngModel placeholder="linkenUrl" required
+                   type="text">
+          </div>
+          <div class="form-group">
+            <label for="githubUrl">Phone</label>
+            <input class="form-control" id="githubUrl" name="githubUrl" ngModel placeholder="githubUrl" required
+                   type="text">
+          </div>
+          <div class="form-group">
+            <label for="societe">Image URL</label>
+            <input class="form-control" id="societe" name="societe" ngModel placeholder="societe" required type="text">
+          </div>
+          <div class="form-group">
+            <label for="domainedetude">Image URL</label>
+            <input class="form-control" id="domainedetude" name="domaineDetude" ngModel placeholder="domainedetude"
+                   required type="text">
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-dismiss="modal" id="add-postuleInfos-form" type="button">Close
+            </button>
+            <button [disabled]="addForm.invalid" class="btn btn-primary" type="submit">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,11 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { PostuleInfos } from '../board-user/postuleInfos';
-import { User } from '../login/user';
-import { Offre } from '../offre/offre';
-import { OffreService } from '../_services/offre.service';
-import { PostuleInfosService } from '../_services/postuleInfosService';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {PostuleInfos} from '../board-user/postuleInfos';
+import {User} from '../login/user';
+import {Offre} from '../offre/offre';
+import {OffreService} from '../_services/offre.service';
+import {PostuleInfosService} from '../_services/postuleInfosService';
 
 @Component({
   selector: 'app-postuler',
@@ -19,14 +19,15 @@ export class PostulerComponent implements OnInit {
 
   //public postuleInfosService: PostuleInfosService;
   public infos: PostuleInfos[];
-  currentUser : User;
+  currentUser: User;
 
-  constructor(private offreService: OffreService, private postuleInfosService: PostuleInfosService){}
+  constructor(private offreService: OffreService, private postuleInfosService: PostuleInfosService) {
+  }
 
   ngOnInit() {
     this.getOffres();
-    this.currentUser = JSON.parse( window.sessionStorage.getItem("auth-user"));
-    
+    this.currentUser = JSON.parse(window.sessionStorage.getItem("auth-user"));
+
   }
 
   public getOffres(): void {
@@ -63,7 +64,7 @@ export class PostulerComponent implements OnInit {
 
     this.postuleInfosService.addPostuleInfos({...addForm.value, condidatPostule: this.currentUser}).subscribe(
       (response: PostuleInfos) => {
-        console.log("hello!",response);
+        console.log("hello!", response);
         this.getPostuleInfos();
         addForm.reset();
       },
@@ -85,7 +86,6 @@ export class PostulerComponent implements OnInit {
       }
     );
   }
-
 
 
 }

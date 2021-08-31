@@ -36,7 +36,7 @@ public class OffreService {
         return offreRepository.save(offre);
     }
 
-    public void deleteOffre(Long id){
+    public void deleteOffre(Long id) {
         offreRepository.deleteOffreById(id);
     }
 }

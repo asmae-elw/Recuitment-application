@@ -1,5 +1,6 @@
 package com.infosat.appRecruitment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class PostuleInfos {
     private String societe;
     private String domaineDetude;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User condidatPostule;
@@ -85,11 +87,11 @@ public class PostuleInfos {
         return condidatPostulé;
     }
 
-    public void setCondidatPostulé(User condidatPostulé) {
-        this.condidatPostulé = condidatPostulé;
+    public void setCondidatPostule(Optional<User> condidatPostule) {
+        this.condidatPostule = condidatPostule;
     }*/
 
-    public PostuleInfos(){
+    public PostuleInfos() {
     }
 
     public PostuleInfos(String cv, String email, String linkdenUrl, String githubUrl, String societe, String domaineDetude, User condidatPostule) {
@@ -111,7 +113,7 @@ public class PostuleInfos {
                 ", cv='" + cv + '\'' +
                 ", email='" + email + '\'' +
                 ", linkdenUrl='" + linkdenUrl + '\'' +
-                ", githunUrl='" + githubUrl + '\'' +
+                ", githubUrl='" + githubUrl + '\'' +
                 ", societe='" + societe + '\'' +
                 ", domaineDetude='" + domaineDetude + '\'' +
                 ", condidatPostule=" + condidatPostule +

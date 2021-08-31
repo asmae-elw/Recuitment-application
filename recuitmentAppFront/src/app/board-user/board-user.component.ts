@@ -1,8 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { PostuleInfosService } from '../_services/postuleInfosService';
-import { PostuleInfos } from './postuleInfos';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {PostuleInfosService} from '../_services/postuleInfosService';
+import {PostuleInfos} from './postuleInfos';
 
 @Component({
   selector: 'app-board-user',
@@ -11,25 +10,22 @@ import { PostuleInfos } from './postuleInfos';
 })
 export class BoardUserComponent implements OnInit {
 
- 
 
   public infos: PostuleInfos[];
 
-  
+
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
   tokenStorageService: any;
 
-   constructor(private postuleInfosService: PostuleInfosService){}
+  constructor(private postuleInfosService: PostuleInfosService) {
+  }
 
   ngOnInit() {
     this.getPostuleInfos();
   }
-  
-
-  
 
 
   public getPostuleInfos(): void {
@@ -43,7 +39,6 @@ export class BoardUserComponent implements OnInit {
       }
     );
   }
-
 
 
 }

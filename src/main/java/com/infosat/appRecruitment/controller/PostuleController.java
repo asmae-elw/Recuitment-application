@@ -2,19 +2,12 @@ package com.infosat.appRecruitment.controller;
 
 
 import com.infosat.appRecruitment.model.PostuleInfos;
-import com.infosat.appRecruitment.model.User;
-import com.infosat.appRecruitment.repository.PostuleInfosRepository;
-import com.infosat.appRecruitment.repository.UserRepository;
 import com.infosat.appRecruitment.security.service.PostuleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/PostulerInfos")
@@ -43,10 +36,10 @@ public class PostuleController {
     }*/
 
 
-   private final PostuleService postuleService;
+    private final PostuleService postuleService;
 
 
-    public PostuleController (PostuleService postuleService) {
+    public PostuleController(PostuleService postuleService) {
 
         this.postuleService = postuleService;
     }
@@ -61,13 +54,14 @@ public class PostuleController {
     }
 
     @GetMapping("/allpostuleInfos")
-    public ResponseEntity<List<PostuleInfos>> getAllPostInfos () {
-        List<PostuleInfos> infos = postuleService.findAllPostInfos();
-        return new ResponseEntity<>(infos, HttpStatus.OK);
+    public ResponseEntity<List<PostuleInfos>> getAllPostInfos() {
+        List<PostuleInfos> postuleInfoss = postuleService.findAllPostInfos();
+        System.out.println("ccccc fait !");
+        return new ResponseEntity<>(postuleInfoss, HttpStatus.OK);
     }
 
     @GetMapping("/findPostInfos/{id}")
-    public ResponseEntity<PostuleInfos> getPostInfosById (@PathVariable("id") Long id) {
+    public ResponseEntity<PostuleInfos> getPostInfosById(@PathVariable("id") Long id) {
         PostuleInfos postuleInfos = postuleService.findPostuleInfosById(id);
         return new ResponseEntity<>(postuleInfos, HttpStatus.OK);
     }

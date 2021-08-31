@@ -1,6 +1,5 @@
 package com.infosat.appRecruitment.security.service;
 
-import com.infosat.appRecruitment.model.CustomUserDetails;
 import com.infosat.appRecruitment.model.User;
 import com.infosat.appRecruitment.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
@@ -20,16 +18,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+        User user = userRepository.findByUsername(username);
 
         return UserDetailsImpl.build(user);
     }
-
-
-
-
-
 
 
 }
